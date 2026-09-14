@@ -45,6 +45,7 @@
   p { margin: 0 0 16px; }
   ul { margin: 0 0 16px; padding-left: 22px; }
   li { margin-bottom: 8px; }
+  ul ul { margin: 8px 0 8px; }
   code {
     background: #f7edf0;
     border-radius: 4px;
@@ -74,7 +75,7 @@
   <article>
     <h1>Blushh Privacy Policy</h1>
     <p class="meta"><strong>Effective date:</strong> July 24, 2026<br>
-    <strong>Last updated:</strong> July 24, 2026</p>
+    <strong>Last updated:</strong> September 13, 2026</p>
 
     <p>Blushh (&ldquo;Blushh,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) is a dating app for college students. This Privacy Policy
     explains what we collect, why, how we protect it, and the choices you have. Blushh is
@@ -90,9 +91,22 @@
     <ul>
       <li><strong>Your phone number</strong>, used to sign you in and verify your account (we text you a
         one-time code). One account per phone number.</li>
-      <li><strong>Your school (<code>.edu</code>) email address — optional.</strong> If you choose to verify it (we email
-        you a one-time code), your profile earns a &ldquo;verified student&rdquo; badge that other users can
-        see. You can use Blushh without providing it.</li>
+      <li><strong>Your school.</strong> You select your school when you sign up. Blushh is campus-based: you
+        only see and match with students of your own school.</li>
+      <li><strong>School verification — required to browse and match at participating schools.</strong> You
+        verify your school affiliation in one of two ways (your choice of method):
+        <ul>
+          <li><strong>School sign-in (for Vanderbilt, your Vanderbilt Microsoft account):</strong> you sign in
+            once and we receive your name and verified email address from Microsoft to confirm
+            your affiliation. We store only a one-way cryptographic hash of your Microsoft
+            directory identifier and the verification timestamp — never your Microsoft password,
+            name, or any access to your Microsoft account.</li>
+          <li><strong>School email code:</strong> we email a one-time code to your school (<code>.edu</code>) address and
+            you enter it in the app.</li>
+        </ul>
+        Either method earns the same verified-student checkmark. Until you verify, you can still
+        sign in and see your existing matches and chats, but you won't appear in anyone's feed
+        and can't match.</li>
       <li><strong>Profile details:</strong> name, age, school year, major, bio, and up to 6 photos.</li>
       <li><strong>Preferences:</strong> the genders you want to see, food and hobby preferences, date vibe, and free-text date ideas.</li>
       <li><strong>Messages</strong> you send to your matches.</li>
@@ -132,8 +146,11 @@
 
     <ul>
       <li>Create your account and sign you in with your verified phone number.</li>
-      <li>If you choose to verify your school email, display a verified-student badge on your profile.</li>
-      <li>Show your profile to potential matches and show you theirs, filtered by your preferences.</li>
+      <li>Verify your school affiliation (via your school sign-in or a school-email code), display
+        the verified-student checkmark, and enable matching — at participating schools,
+        verification is required to browse and match.</li>
+      <li>Show your profile to potential matches at your school and show you theirs, filtered by
+        your preferences.</li>
       <li>Detect when a match is nearby and trigger the ring.</li>
       <li>Deliver rings, matches, and messages, including push notifications.</li>
       <li>Suggest date venues and, if you choose, collect feedback about them.</li>
@@ -159,6 +176,11 @@
       <li><strong>Supabase</strong> — our database, authentication, photo storage, and server functions.</li>
       <li><strong>Twilio</strong> — sends your phone verification texts (receives your phone number).</li>
       <li><strong>Resend</strong> — sends your email verification codes (receives your email address).</li>
+      <li><strong>Microsoft</strong> — if you verify with your Vanderbilt Microsoft account (school sign-in is
+        one of two verification methods; the school-email code is the other): Microsoft signs
+        you in to your Vanderbilt account and confirms your affiliation to us (Microsoft learns
+        you use Blushh; we receive your name and verified email from Microsoft and store only a
+        one-way hash of your directory identifier plus the verification timestamp).</li>
       <li><strong>Expo, Apple (APNs), and Google (Firebase Cloud Messaging)</strong> — to deliver push notifications.</li>
       <li><strong>Apple App Store / Google Play</strong> — app distribution.</li>
     </ul>
@@ -208,7 +230,8 @@
 
     <p>Deleting your account (Profile &rarr; Delete account) is <strong>permanent and immediate</strong> — there is no
     soft delete. We remove your profile, photos, messages, matches, likes and passes, blocks,
-    reports, location data, Bluetooth/proximity records, and your login account. Our infrastructure does not currently retain automated backup copies, so deletion is
+    reports, location data, Bluetooth/proximity records, your school-verification record
+    (including the hashed Microsoft identifier), and your login account. Our infrastructure does not currently retain automated backup copies, so deletion is
     immediate and complete. If we add backup infrastructure in the future, we will update this
     policy with its retention window.</p>
 

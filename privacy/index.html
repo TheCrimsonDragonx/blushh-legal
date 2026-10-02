@@ -94,13 +94,13 @@
         one-time code). One account per phone number.</li>
       <li><strong>Your school.</strong> You select your school when you sign up. Blushh is campus-based: you
         only see and match with students of your own school.</li>
-      <li><strong>School verification — required to browse and match at participating schools.</strong> You
+      <li><strong>School verification, required to browse and match at participating schools.</strong> You
         verify your school affiliation in one of two ways (your choice of method):
         <ul>
           <li><strong>School sign-in (for Vanderbilt, your Vanderbilt Microsoft account):</strong> you sign in
             once and we receive your name and verified email address from Microsoft to confirm
             your affiliation. We store only a one-way cryptographic hash of your Microsoft
-            directory identifier and the verification timestamp — never your Microsoft password,
+            directory identifier and the verification timestamp, never your Microsoft password,
             name, or any access to your Microsoft account.</li>
           <li><strong>School email code:</strong> we email a one-time code to your school (<code>.edu</code>) address and
             you enter it in the app.</li>
@@ -116,14 +116,14 @@
 
     <p><strong>We collect as you use the app:</strong></p>
     <ul>
-      <li><strong>Precise location (GPS)</strong> — only when you enable Location. We keep your most recent
+      <li><strong>Precise location (GPS)</strong>: only when you enable Location. We keep your most recent
         coordinate to detect when a match is nearby; we do not keep a location history trail.</li>
-      <li><strong>Bluetooth proximity signals</strong> — when you enable Bluetooth, your phone and a match's
+      <li><strong>Bluetooth proximity signals</strong>: when you enable Bluetooth, your phone and a match's
         phone exchange rotating anonymous codes to detect that you're physically near each other.
         We record proximity events (that a detection happened, signal strength, time).</li>
-      <li><strong>Ring and match activity</strong> — when a &ldquo;ring&rdquo; is triggered between you and a match, and
+      <li><strong>Ring and match activity</strong>: when a &ldquo;ring&rdquo; is triggered between you and a match, and
         whether each of you responded.</li>
-      <li><strong>Device push token</strong> — an identifier used to deliver notifications.</li>
+      <li><strong>Device push token</strong>: an identifier used to deliver notifications.</li>
       <li><strong>Likes and passes</strong> (swipes) and the matches they create.</li>
     </ul>
 
@@ -136,8 +136,8 @@
     waitlist form we collect:</p>
     <ul>
       <li><strong>Your phone number</strong>, used for one purpose only: to text you when Blushh opens at your school.</li>
-      <li><strong>Your school</strong> — the one you select, plus the name you type if your school isn't on the list.</li>
-      <li><strong>Your consent record</strong> — the date and time you agreed, which version of the consent wording
+      <li><strong>Your school</strong>: the one you select, plus the name you type if your school isn't on the list.</li>
+      <li><strong>Your consent record</strong>: the date and time you agreed, which version of the consent wording
         you were shown, your browser's user-agent string, and a one-way cryptographic hash of your
         IP address (used to stop automated signup abuse; we do not store the IP address itself).</li>
     </ul>
@@ -150,9 +150,9 @@
     <p>Some of what we handle is legally &ldquo;sensitive.&rdquo; We collect it only to run the service:</p>
     <ul>
       <li><strong>Precise geolocation</strong> and physical-proximity data (to power the ring).</li>
-      <li><strong>Information that can indicate sexual orientation</strong> — the genders you choose to see. We
+      <li><strong>Information that can indicate sexual orientation</strong>: the genders you choose to see. We
         use this solely for matching; we never sell it or use it for advertising.</li>
-      <li><strong>Your photos</strong> — used only to build your profile. We do <strong>not</strong> use facial recognition.</li>
+      <li><strong>Your photos</strong>: used only to build your profile. We do <strong>not</strong> use facial recognition.</li>
     </ul>
 
     <p>Where the law requires your consent to process sensitive information, we ask for it (for
@@ -164,7 +164,7 @@
     <ul>
       <li>Create your account and sign you in with your verified phone number.</li>
       <li>Verify your school affiliation (via your school sign-in or a school-email code), display
-        the verified-student checkmark, and enable matching — at participating schools,
+        the verified-student checkmark, and enable matching. At participating schools,
         verification is required to browse and match.</li>
       <li>Show your profile to potential matches at your school and show you theirs, filtered by
         your preferences.</li>
@@ -182,7 +182,7 @@
       <li><strong>Your exact location is never shown to another user.</strong> We only determine whether a match
         is within a short distance.</li>
       <li>The Bluetooth path uses <strong>rotating anonymous codes</strong> that only your and your match's
-        phones can correlate — your identity is not broadcast.</li>
+        phones can correlate, so your identity is not broadcast.</li>
       <li><strong>Ghost mode</strong> pauses all detection instantly.</li>
     </ul>
 
@@ -190,17 +190,17 @@
 
     <p>We share data only with service providers who help us operate Blushh, under contract:</p>
     <ul>
-      <li><strong>Supabase</strong> — our database, authentication, photo storage, and server functions.</li>
-      <li><strong>Twilio</strong> — sends your phone verification texts (receives your phone number).</li>
-      <li><strong>Resend</strong> — sends your email verification codes (receives your email address).</li>
-      <li><strong>Microsoft</strong> — if you verify with your Vanderbilt Microsoft account (school sign-in is
+      <li><strong>Supabase</strong>: our database, authentication, photo storage, and server functions.</li>
+      <li><strong>Twilio</strong>: sends your phone verification texts (receives your phone number).</li>
+      <li><strong>Resend</strong>: sends your email verification codes (receives your email address).</li>
+      <li><strong>Microsoft</strong>: if you verify with your Vanderbilt Microsoft account (school sign-in is
         one of two verification methods; the school-email code is the other): Microsoft signs
         you in to your Vanderbilt account and confirms your affiliation to us (Microsoft learns
         you use Blushh; we receive your name and verified email from Microsoft and store only a
         one-way hash of your directory identifier plus the verification timestamp).</li>
-      <li><strong>Expo, Apple (APNs), and Google (Firebase Cloud Messaging)</strong> — to deliver push notifications.</li>
-      <li><strong>Apple App Store / Google Play</strong> — app distribution.</li>
-      <li><strong>Netlify</strong> — hosts our website (getblushh.com), including the waitlist form.</li>
+      <li><strong>Expo, Apple (APNs), and Google (Firebase Cloud Messaging)</strong>: to deliver push notifications.</li>
+      <li><strong>Apple App Store / Google Play</strong>: app distribution.</li>
+      <li><strong>Netlify</strong>: hosts our website (getblushh.com), including the waitlist form.</li>
     </ul>
 
     <p>We may also disclose information if required by law, to protect the safety of users or the
@@ -247,7 +247,7 @@
       <li><strong>Blocks</strong> you create stay in effect for as long as both accounts exist (removing
         them automatically would silently re-expose you to the person you blocked).</li>
       <li><strong>Waitlist entries</strong> are deleted <strong>30 days after Blushh launches at that school</strong>, or after
-        <strong>18 months</strong> if that school hasn't launched — whichever comes first. If you opted out, we
+        <strong>18 months</strong> if that school hasn't launched, whichever comes first. If you opted out, we
         keep the suppression record (your number and the opt-out date, nothing else) indefinitely so
         we never text you again.</li>
       <li><strong>If we ban an account</strong> for violating our rules, we delete its personal data but
@@ -260,12 +260,12 @@
 
     <h2 id="deleting-your-account">8. Deleting your account</h2>
 
-    <p>Deleting your account (Profile &rarr; Delete account) is <strong>permanent and immediate</strong> — there is no
+    <p>Deleting your account (Profile &rarr; Delete account) is <strong>permanent and immediate</strong>: there is no
     soft delete. We remove your profile, photos, messages, matches, likes and passes, blocks,
     reports you filed, location data, Bluetooth/proximity records, your school-verification record
     (including the hashed Microsoft identifier), and your login account. One exception: reports
     other users filed <strong>about</strong> you, and their evidence snapshots, are kept for the retention
-    window described in §7 — so deleting an account cannot erase a safety record. Our infrastructure does not currently retain automated backup copies, so deletion is
+    window described in §7, so deleting an account cannot erase a safety record. Our infrastructure does not currently retain automated backup copies, so deletion is
     immediate and complete. If we add backup infrastructure in the future, we will update this
     policy with its retention window.</p>
 

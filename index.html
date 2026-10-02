@@ -3,90 +3,1194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blushh — Legal</title>
-<meta name="description" content="Blushh legal documents: Privacy Policy and Terms of Service.">
+<title>blushh — meet your match. find them for real.</title>
+<meta name="description" content="blushh is dating for college students. Match with verified students at your school, then both phones ring when you're near each other in real life.">
+<meta property="og:title" content="blushh — meet your match. find them for real.">
+<meta property="og:description" content="Dating for college students. When you and a match are near each other, both your phones ring.">
+<meta property="og:type" content="website">
+<link rel="icon" href="icon.png">
 <style>
   :root {
-    --bg: #fffafb;
-    --text: #2b2330;
-    --muted: #6f6377;
-    --accent: #d94f70;
-    --accent-dark: #b83a5a;
-    --card: #ffffff;
-    --border: #f0dde3;
+    /* Splash / brand palette — theme/onboarding.ts */
+    --blush: #fcdbe1;
+    --rose: #e06f91;
+    --deep-rose: #A8455F;
+    --gold: #A9822F;
+    /* Blush theme — theme/index.ts */
+    --primary: #C93B61;
+    --primary-light: #B23057;
+    --primary-dark: #8E2244;
+    --bg: #FFFFFF;
+    --card: #FBF3F5;
+    --pill: #F9E2E8;
+    --text: #26161C;
+    --muted: #8A6670;
+    --pill-text: #8E2244;
+    --border: rgba(201, 59, 97, 0.16);
+    /* Ring takeover */
+    --backdrop: #17090E;
+    --on-backdrop: #FFF8FA;
+    --muted-on-backdrop: #E8A7B7;
+    --success: #148060;
+    /* Shape — tokens.ts: 12px is the house radius */
+    --r-sm: 8px;
+    --r: 12px;
+    --r-lg: 24px;
+    --r-pill: 999px;
+    --serif: Georgia, 'Lora', 'Source Serif Pro', 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
+
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--sans);
+    font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
-  .wrap {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 48px 20px 64px;
+
+  .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 680px; }
+
+  h1, h2, h3 { font-weight: 300; letter-spacing: -0.01em; line-height: 1.2; margin: 0; }
+  p { margin: 0; }
+  a { color: var(--primary-light); }
+
+  .overline {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--primary-light);
   }
-  header { text-align: center; margin-bottom: 40px; }
-  .logo {
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--accent);
-    margin: 0 0 8px;
-  }
-  .tagline { color: var(--muted); margin: 0; }
-  .cards { display: grid; gap: 16px; margin-top: 32px; }
-  a.card {
-    display: block;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px 24px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  }
-  a.card:hover, a.card:focus-visible {
-    border-color: var(--accent);
-    box-shadow: 0 2px 12px rgba(217, 79, 112, 0.12);
-  }
-  .card h2 { margin: 0 0 6px; font-size: 1.15rem; color: var(--accent-dark); }
-  .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-  footer {
-    margin-top: 56px;
+
+  .icon { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; fill: none;
+          stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---------------- Reveal on scroll ---------------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------------- Hero ---------------- */
+  .hero {
+    position: relative;
+    background: var(--blush);
+    padding: 72px 0 88px;
+    overflow: hidden;
     text-align: center;
-    color: var(--muted);
-    font-size: 0.85rem;
   }
-  footer a { color: var(--accent-dark); }
+  .orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .5; pointer-events: none; }
+  .orb-a { width: 420px; height: 420px; background: #f7b6c6; top: -140px; left: -120px; animation: drift-a 19s ease-in-out infinite; }
+  .orb-b { width: 360px; height: 360px; background: #f3a7bd; bottom: -150px; right: -110px; animation: drift-b 23s ease-in-out infinite; }
+  @keyframes drift-a { 0%,100% { transform: translate(0,0); } 50% { transform: translate(60px, 40px); } }
+  @keyframes drift-b { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-50px, -40px); } }
+
+  .hero-inner { position: relative; z-index: 1; }
+  .logo-mark { width: 96px; height: auto; display: block; margin: 0 auto 20px;
+               animation: breathe 1800ms ease-in-out infinite; }
+  /* BrandSplash.tsx: opacity 1 -> 0.55 -> 1, 900ms each way, sine in-out */
+  @keyframes breathe { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+
+  .wordmark { font-family: var(--serif); font-size: clamp(3rem, 12vw, 4.75rem); color: var(--rose);
+              font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+  .tagline { font-family: var(--serif); font-size: clamp(1.05rem, 3.6vw, 1.4rem); color: var(--deep-rose);
+             margin-top: 14px; }
+  .hero-sub { color: var(--deep-rose); opacity: .85; margin-top: 28px; font-size: 1.05rem; }
+  .campus-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.6); border: 1px solid rgba(168,69,95,.2);
+    color: var(--deep-rose); border-radius: var(--r-pill);
+    padding: 7px 16px; font-size: 13px; font-weight: 600; margin-top: 26px;
+  }
+  .campus-badge .icon { width: 15px; height: 15px; }
+
+  /* ---------------- Sections ---------------- */
+  section { padding: 88px 0; }
+  .section-head { text-align: center; max-width: 620px; margin: 0 auto 56px; }
+  .section-head h2 { font-size: clamp(1.75rem, 5vw, 2.5rem); margin-top: 10px; }
+  .section-head p { color: var(--muted); margin-top: 16px; font-size: 1.05rem; }
+
+  .pull { background: var(--card); }
+  .pull-quote { font-family: var(--serif); font-size: clamp(1.4rem, 4.2vw, 2rem); line-height: 1.35;
+                text-align: center; color: var(--text); font-weight: 400; }
+  .pull-quote em { color: var(--primary); font-style: normal; }
+
+  /* ---------------- Phone frame ---------------- */
+  .phone {
+    width: 260px; height: 540px; flex: none;
+    background: #0d0609; border-radius: 40px; padding: 10px;
+    box-shadow: 0 18px 40px rgba(38,22,28,.26);
+    position: relative;
+  }
+  .phone-screen {
+    width: 100%; height: 100%; border-radius: 31px; overflow: hidden;
+    background: var(--bg); position: relative;
+    display: flex; flex-direction: column;
+  }
+  .notch { position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
+           width: 86px; height: 20px; background: #0d0609; border-radius: var(--r-pill); z-index: 6; }
+
+  /* ---------------- How it works ---------------- */
+  .steps { display: grid; gap: 72px; }
+  .step { display: grid; grid-template-columns: 1fr 260px; gap: 48px; align-items: center; }
+  .step:nth-child(even) { grid-template-columns: 260px 1fr; }
+  .step:nth-child(even) .step-copy { order: 2; }
+  .step-num {
+    width: 34px; height: 34px; border-radius: var(--r-pill); background: var(--primary);
+    color: #fff; display: grid; place-items: center; font-size: 14px; font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .step-copy h3 { font-size: clamp(1.4rem, 4vw, 1.9rem); }
+  .step-copy p { color: var(--muted); margin-top: 14px; font-size: 1.02rem; }
+  .step-phone { display: flex; justify-content: center; }
+
+  /* --- Mock: discover --- */
+  .mock-head {
+    padding: 34px 16px 10px; text-align: center; font-family: var(--serif);
+    color: var(--primary); font-weight: 700; font-size: 18px; flex: none;
+  }
+  .mock-profile { flex: 1; padding: 0 12px 12px; display: flex; flex-direction: column; min-height: 0; }
+  .mock-photo {
+    flex: 1; border-radius: var(--r); position: relative; overflow: hidden; min-height: 0;
+    background: linear-gradient(150deg, #f1b9c8, #e089a4 55%, #cf6f8f);
+  }
+  .mock-photo::after {
+    content: ''; position: absolute; inset: auto 0 0 0; height: 55%;
+    background: linear-gradient(transparent, rgba(23,9,14,.72));
+  }
+  .mock-name {
+    position: absolute; left: 12px; bottom: 10px; z-index: 2; color: #fff;
+    font-size: 17px; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,.35);
+  }
+  .mock-name span { font-weight: 300; opacity: .9; }
+  .mock-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .mock-pill {
+    background: var(--pill); color: var(--pill-text); border-radius: var(--r-pill);
+    padding: 4px 10px; font-size: 10px; font-weight: 600;
+  }
+  .mock-actions { display: flex; justify-content: center; gap: 26px; padding: 12px 0 18px; flex: none; }
+  .circ {
+    width: 50px; height: 50px; border-radius: var(--r-pill); display: grid; place-items: center;
+    border: 1px solid var(--border); background: #fff;
+  }
+  .circ .icon { width: 22px; height: 22px; }
+  .circ-pass { color: var(--muted); }
+  .circ-like { color: var(--primary); border-color: var(--primary); }
+
+  .swipe-card { animation: swipe-cycle 7s ease-in-out infinite; }
+  @keyframes swipe-cycle {
+    0%, 26% { transform: translateX(0) rotate(0); opacity: 1; }
+    36% { transform: translateX(-120%) rotate(-12deg); opacity: 0; }
+    37% { transform: translateX(120%) rotate(12deg); opacity: 0; }
+    47%, 100% { transform: translateX(0) rotate(0); opacity: 1; }
+  }
+
+  /* --- Mock: anonymous match --- */
+  .mock-match {
+    position: absolute; inset: 0; background: var(--backdrop); color: var(--on-backdrop);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 24px; gap: 14px; z-index: 5;
+    opacity: 0; animation: match-in 7s ease-in-out infinite;
+  }
+  @keyframes match-in {
+    0%, 52% { opacity: 0; visibility: hidden; }
+    62%, 92% { opacity: 1; visibility: visible; }
+    100% { opacity: 0; visibility: hidden; }
+  }
+  .mock-match .icon { width: 44px; height: 44px; color: var(--muted-on-backdrop); }
+  .mock-match .overline { color: var(--muted-on-backdrop); }
+  .mock-match h4 { font-size: 20px; font-weight: 300; margin: 0; line-height: 1.3; }
+  .mock-match p { font-size: 12px; color: var(--muted-on-backdrop); }
+
+  /* --- Mock: campus map --- */
+  .mock-map { position: absolute; inset: 0; background: #faf2f4; overflow: hidden; }
+  .map-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .map-block { position: absolute; background: #f3dde3; border-radius: var(--r-sm); }
+  .dot {
+    position: absolute; width: 16px; height: 16px; border-radius: var(--r-pill);
+    background: var(--primary); border: 3px solid #fff; z-index: 3;
+    box-shadow: 0 2px 6px rgba(38,22,28,.3);
+  }
+  .dot::before {
+    content: ''; position: absolute; inset: -6px; border-radius: var(--r-pill);
+    border: 2px solid var(--primary); opacity: 0; animation: dot-ping 2s ease-out infinite;
+  }
+  @keyframes dot-ping { 0% { transform: scale(.6); opacity: .7; } 100% { transform: scale(2.4); opacity: 0; } }
+  .dot-a { animation: walk-a 9s ease-in-out infinite; }
+  .dot-b { animation: walk-b 9s ease-in-out infinite; }
+  @keyframes walk-a {
+    0% { left: 14%; top: 22%; } 45% { left: 42%; top: 48%; }
+    60%, 100% { left: 46%; top: 52%; }
+  }
+  @keyframes walk-b {
+    0% { left: 78%; top: 76%; } 45% { left: 54%; top: 56%; }
+    60%, 100% { left: 52%; top: 52%; }
+  }
+  .map-meet {
+    position: absolute; left: 50%; top: 52%; width: 120px; height: 120px; margin: -60px 0 0 -60px;
+    border-radius: var(--r-pill); border: 2px solid var(--primary); opacity: 0;
+    animation: meet-flash 9s ease-out infinite;
+  }
+  @keyframes meet-flash {
+    0%, 58% { opacity: 0; transform: scale(.3); }
+    70% { opacity: .9; transform: scale(1); }
+    88%, 100% { opacity: 0; transform: scale(1.5); }
+  }
+
+  /* ---------------- THE RING ---------------- */
+  .ring-section { background: var(--backdrop); color: var(--on-backdrop); padding: 96px 0 104px; }
+  .ring-section .section-head h2 { color: var(--on-backdrop); }
+  .ring-section .section-head p { color: var(--muted-on-backdrop); }
+  .ring-section .overline { color: var(--muted-on-backdrop); }
+
+  .ring-stage { display: flex; justify-content: center; gap: 36px; flex-wrap: wrap; }
+  .ring-stage .phone { box-shadow: 0 18px 50px rgba(0,0,0,.5); }
+  .ring-stage .phone-screen { background: var(--backdrop); }
+
+  .ring-caption { text-align: center; margin-top: 40px; min-height: 52px; }
+  .ring-caption p { color: var(--muted-on-backdrop); font-size: 1.02rem; max-width: 520px; margin: 0 auto; }
+  .replay {
+    margin-top: 26px; background: transparent; color: var(--on-backdrop);
+    border: 1px solid rgba(232,167,183,.4); border-radius: var(--r);
+    padding: 11px 22px; font: inherit; font-size: 14px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .replay:hover { border-color: var(--muted-on-backdrop); }
+  .replay .icon { width: 16px; height: 16px; }
+
+  /* Ring phone internals — stages */
+  .rp { position: absolute; inset: 0; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; padding: 22px; text-align: center;
+        opacity: 0; visibility: hidden; transition: opacity .45s ease; }
+  .rp.on { opacity: 1; visibility: visible; }
+
+  /* lock screen */
+  .rp-lock { justify-content: flex-start; padding-top: 70px; color: var(--muted-on-backdrop); }
+  .lock-time { font-size: 42px; font-weight: 200; color: var(--on-backdrop); line-height: 1; }
+  .lock-date { font-size: 12px; margin-top: 6px; opacity: .75; }
+
+  /* push banner */
+  .push-banner {
+    position: absolute; top: 34px; left: 12px; right: 12px; z-index: 8;
+    background: rgba(255,248,250,.97); color: var(--text);
+    border-radius: var(--r); padding: 10px 12px; text-align: left;
+    display: flex; gap: 9px; align-items: flex-start;
+    transform: translateY(-130%); opacity: 0;
+    transition: transform .45s cubic-bezier(.2,.8,.3,1), opacity .35s ease;
+    box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  }
+  .push-banner.on { transform: translateY(0); opacity: 1; }
+  .push-icon { width: 26px; height: 26px; border-radius: 7px; background: var(--primary);
+               display: grid; place-items: center; flex: none; color: #fff; }
+  .push-icon .icon { width: 15px; height: 15px; }
+  .push-title { font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+  .push-title .icon { width: 12px; height: 12px; color: var(--primary); fill: var(--primary); stroke: none; }
+  .push-body { font-size: 11px; color: var(--muted); line-height: 1.35; margin-top: 1px; }
+
+  /* buzz — RING_PATTERN [0,400,200,400,200,400] from lib/haptics.ts */
+  .phone.buzz { animation: buzz 1800ms linear; }
+  @keyframes buzz {
+    0%,22.2% { transform: translateX(0); }
+    1%,3%,5%,7%,9%,11%,13%,15%,17%,19%,21% { transform: translateX(-3px); }
+    2%,4%,6%,8%,10%,12%,14%,16%,18%,20%,22% { transform: translateX(3px); }
+    22.3%,33.3% { transform: translateX(0); }
+    34%,36%,38%,40%,42%,44%,46%,48%,50%,52%,54% { transform: translateX(-3px); }
+    35%,37%,39%,41%,43%,45%,47%,49%,51%,53%,55% { transform: translateX(3px); }
+    55.6%,66.6% { transform: translateX(0); }
+    67%,69%,71%,73%,75%,77%,79%,81%,83%,85%,87% { transform: translateX(-3px); }
+    68%,70%,72%,74%,76%,78%,80%,82%,84%,86%,88% { transform: translateX(3px); }
+    89%,100% { transform: translateX(0); }
+  }
+
+  /* RingPulse — components/RingPulse.tsx, exact spec */
+  .pulse-wrap { position: relative; width: 150px; height: 150px; display: grid; place-items: center; flex: none; }
+  .pulse {
+    position: absolute; width: 150px; height: 150px; border-radius: var(--r-pill);
+    background: var(--primary); opacity: 0;
+  }
+  .rp.on .pulse { animation: pulse 1800ms cubic-bezier(0,0,.2,1) infinite; }
+  .rp.on .pulse:nth-child(2) { animation-delay: 600ms; }
+  .rp.on .pulse:nth-child(3) { animation-delay: 1200ms; }
+  @keyframes pulse {
+    0%   { transform: scale(.4); opacity: .5; }
+    100% { transform: scale(1.3); opacity: 0; }
+  }
+  .pulse-core {
+    position: relative; width: 58px; height: 58px; border-radius: var(--r-pill);
+    background: var(--primary); display: grid; place-items: center; z-index: 2;
+  }
+  .pulse-core i { width: 25px; height: 25px; border-radius: var(--r-pill);
+                  background: #fff; opacity: .9; display: block; }
+
+  .rp h4 { font-size: 21px; font-weight: 300; color: var(--on-backdrop); margin: 34px 0 0; line-height: 1.25; }
+  .rp .sub { font-size: 12px; color: var(--muted-on-backdrop); margin-top: 10px; line-height: 1.5; }
+  .rp-cta { position: absolute; left: 22px; right: 22px; bottom: 30px; }
+  .btn-primary {
+    display: block; width: 100%; background: var(--primary); color: #fff;
+    border: 0; border-radius: var(--r); padding: 12px; font: inherit; font-size: 13px; font-weight: 600;
+  }
+  .btn-ghost {
+    display: block; width: 100%; background: transparent; color: var(--muted-on-backdrop);
+    border: 0; padding: 11px; font: inherit; font-size: 13px; margin-top: 2px;
+  }
+  .tap-ring { animation: tap-flash .5s ease; }
+  @keyframes tap-flash { 50% { transform: scale(.95); opacity: .75; } }
+
+  /* unwrap */
+  .gift { width: 64px; height: 64px; color: var(--muted-on-backdrop); }
+  .rp.on .gift { animation: gift-bob 2.2s ease-in-out infinite; }
+  @keyframes gift-bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-7px) rotate(2deg); } }
+
+  .spinner { width: 34px; height: 34px; border-radius: var(--r-pill);
+             border: 2px solid rgba(232,167,183,.25); border-top-color: var(--muted-on-backdrop); }
+  .rp.on .spinner { animation: spin 900ms linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* reveal */
+  .avatar {
+    width: 104px; height: 104px; border-radius: var(--r-pill); flex: none;
+    background: linear-gradient(150deg, #f1b9c8, #cf6f8f);
+    border: 3px solid rgba(255,248,250,.9);
+  }
+  .reveal-name { font-size: 25px; font-weight: 600; color: var(--on-backdrop); margin-top: 18px; }
+  .reveal-name span { font-weight: 300; opacity: .85; }
+  .confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 7; }
+  .conf { position: absolute; width: 7px; height: 10px; border-radius: 2px; opacity: 0; top: -14px; }
+  .rp.on .conf { animation: fall 1600ms ease-in forwards; }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0); opacity: 1; }
+    100% { transform: translateY(520px) rotate(540deg); opacity: 0; }
+  }
+
+  /* ---------------- Trust / privacy ---------------- */
+  .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+  .trust-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-lg);
+    padding: 28px 24px;
+  }
+  .trust-card .icon { width: 26px; height: 26px; color: var(--primary); }
+  .trust-card h3 { font-size: 1.1rem; font-weight: 600; margin-top: 16px; }
+  .trust-card p { color: var(--muted); font-size: .97rem; margin-top: 10px; }
+
+  .verified-row { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .v-badge {
+    font-family: var(--serif); color: var(--gold); font-size: 30px; font-weight: 700;
+    letter-spacing: 1px; width: 54px; height: 54px; border-radius: var(--r-pill);
+    border: 2px solid rgba(169,130,47,.35); display: grid; place-items: center; flex: none;
+  }
+
+  /* ---------------- Waitlist ---------------- */
+  .cta-section { background: var(--blush); }
+  .form-card {
+    background: rgba(255,255,255,.72); border: 1px solid rgba(168,69,95,.18);
+    border-radius: var(--r-lg); padding: 28px; max-width: 520px; margin: 0 auto;
+    text-align: left;
+  }
+  .hero .form-card { margin-top: 32px; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 13px; font-weight: 600; color: var(--deep-rose); margin-bottom: 6px; }
+  .field input[type=tel], .field input[type=text], .field input[type=email], .field select {
+    width: 100%; font: inherit; font-size: 15px; color: var(--text);
+    background: #fff; border: 1px solid rgba(168,69,95,.25); border-radius: var(--r);
+    padding: 12px 13px; -webkit-appearance: none; appearance: none;
+  }
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A6670' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; background-size: 18px;
+    padding-right: 38px;
+  }
+  .field input:focus, .field select:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+  .check { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+  .check input { margin: 3px 0 0; width: 17px; height: 17px; flex: none; accent-color: var(--primary); }
+  .check span { font-size: 12.5px; line-height: 1.5; color: var(--deep-rose); }
+  .submit {
+    width: 100%; background: var(--primary); color: #fff; border: 0; border-radius: var(--r);
+    padding: 15px; font: inherit; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 6px;
+  }
+  .submit:hover { background: var(--primary-dark); }
+  .submit:disabled { opacity: .65; cursor: default; }
+  .form-status { font-size: 14px; margin-top: 14px; line-height: 1.5; }
+  .form-status.err { color: #B3261E; }
+  .form-status.ok { color: var(--success); }
+  .form-done { text-align: center; padding: 10px 0; }
+  .form-done .icon { width: 38px; height: 38px; color: var(--success); }
+  .form-done h3 { font-size: 1.25rem; margin-top: 12px; color: var(--text); }
+  .form-done p { color: var(--muted); margin-top: 8px; font-size: .97rem; }
+  .fine { font-size: 11.5px; color: var(--muted); margin-top: 14px; line-height: 1.5; }
+
+  /* ---------------- Footer ---------------- */
+  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 40px 0; }
+  .foot { display: flex; flex-wrap: wrap; gap: 12px 26px; align-items: center; justify-content: center;
+          font-size: 14px; color: var(--muted); text-align: center; }
+  .foot a { color: var(--primary-light); text-decoration: none; }
+  .foot a:hover { text-decoration: underline; }
+  .foot-brand { font-family: var(--serif); color: var(--rose); font-weight: 700; font-size: 18px; }
+
+  /* ---------------- Responsive ---------------- */
+  @media (max-width: 860px) {
+    section { padding: 64px 0; }
+    .step, .step:nth-child(even) { grid-template-columns: 1fr; gap: 28px; }
+    .step:nth-child(even) .step-copy { order: 0; }
+    .step-copy { text-align: center; }
+    .step-num { margin-left: auto; margin-right: auto; }
+    .ring-stage { gap: 20px; }
+    .ring-stage .phone { width: 210px; height: 440px; }
+    .ring-stage .pulse-wrap, .ring-stage .pulse { width: 112px; height: 112px; }
+    .ring-stage .rp h4 { font-size: 18px; margin-top: 24px; }
+    .ring-stage .avatar { width: 80px; height: 80px; }
+  }
+  @media (max-width: 430px) {
+    .ring-stage .phone { width: 168px; height: 356px; border-radius: 30px; padding: 7px; }
+    .ring-stage .phone-screen { border-radius: 24px; }
+    .ring-stage .notch { width: 62px; height: 15px; }
+    .ring-stage .pulse-wrap, .ring-stage .pulse { width: 84px; height: 84px; }
+    .ring-stage .pulse-core { width: 40px; height: 40px; }
+    .ring-stage .pulse-core i { width: 17px; height: 17px; }
+    .ring-stage .rp { padding: 13px; }
+    .ring-stage .rp h4 { font-size: 14px; margin-top: 16px; }
+    .ring-stage .rp .sub { font-size: 9.5px; margin-top: 6px; }
+    .ring-stage .rp-cta { left: 11px; right: 11px; bottom: 16px; }
+    .ring-stage .btn-primary { padding: 8px; font-size: 11px; }
+    .ring-stage .btn-ghost { padding: 7px; font-size: 11px; }
+    .ring-stage .avatar { width: 62px; height: 62px; }
+    .ring-stage .reveal-name { font-size: 17px; margin-top: 11px; }
+    .ring-stage .gift { width: 42px; height: 42px; }
+    .ring-stage .lock-time { font-size: 30px; }
+    .ring-stage .push-banner { top: 22px; left: 7px; right: 7px; padding: 7px 8px; }
+    .ring-stage .push-title { font-size: 10px; }
+    .ring-stage .push-body { font-size: 9px; }
+    .form-card { padding: 22px 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rp { transition: none; }
+    .conf { display: none; }
+    .push-banner.on { transform: none; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1 class="logo">Blushh</h1>
-    <p class="tagline">The dating app for college students.</p>
-  </header>
 
-  <main>
-    <div class="cards">
-      <a class="card" href="privacy/">
-        <h2>Privacy Policy</h2>
-        <p>What we collect, why, how we protect it, and the choices you have.</p>
-      </a>
-      <a class="card" href="terms/">
-        <h2>Terms of Service</h2>
-        <p>The agreement that governs your use of Blushh.</p>
-      </a>
+<!-- Icon sprite: inline SVG only, no emoji anywhere on this page. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5l-7.1-7.1a4.5 4.5 0 016.4-6.4l.7.7.7-.7a4.5 4.5 0 116.4 6.4z"/></symbol>
+  <symbol id="i-heart-solid" viewBox="0 0 24 24"><path d="M12 20.5l-7.1-7.1a4.5 4.5 0 016.4-6.4l.7.7.7-.7a4.5 4.5 0 116.4 6.4z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 11h16v9a1 1 0 01-1 1H5a1 1 0 01-1-1z"/><path d="M3 7.5h18V11H3zM12 7.5V21"/><path d="M12 7.5S10.8 3 8.3 3a2.2 2.2 0 000 4.5zM12 7.5s1.2-4.5 3.7-4.5a2.2 2.2 0 010 4.5z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 6-2 7-2 7h16s-2-1-2-7z"/><path d="M13.7 20a2 2 0 01-3.4 0"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.8l7.5 3v5.4c0 4.6-3.1 8.8-7.5 10-4.4-1.2-7.5-5.4-7.5-10V5.8z"/><path d="M9.2 12.2l2 2 3.6-3.8"/></symbol>
+  <symbol id="i-ghost" viewBox="0 0 24 24"><path d="M5 21V10a7 7 0 1114 0v11l-2.3-1.8-2.4 1.8-2.3-1.8L9.7 21l-2.4-1.8z"/><circle cx="9.5" cy="10.5" r="1" fill="currentColor"/><circle cx="14.5" cy="10.5" r="1" fill="currentColor"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M8 12.4l2.8 2.8L16 9.6"/></symbol>
+  <symbol id="i-replay" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 108.5-8.5c-2.6 0-5 1.2-6.5 3"/><path d="M3.3 3.2v4.4h4.4"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.2 2.5L4.8 13.4h6L10.2 21.5l8.6-11h-6.2z"/></symbol>
+</svg>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="wrap hero-inner">
+    <img class="logo-mark" src="logo-mark.png" alt="" width="96" height="120">
+    <h1 class="wordmark">blushh</h1>
+    <p class="tagline">meet your match. find them for real.</p>
+    <p class="hero-sub">Dating for college students &mdash; where matches don't die in your inbox.</p>
+
+    <div class="form-card" id="hero-form-card">
+      <div data-form-root></div>
     </div>
-  </main>
 
-  <footer>
-    <p>Questions? <a href="mailto:support@getblushh.com">support@getblushh.com</a></p>
-  </footer>
-</div>
+    <div class="campus-badge">
+      <svg class="icon"><use href="#i-pin"/></svg>
+      Coming soon to Vanderbilt
+    </div>
+  </div>
+</header>
+
+<!-- ============ THE PROBLEM ============ -->
+<section class="pull">
+  <div class="wrap narrow">
+    <p class="pull-quote reveal">
+      You matched three weeks ago. You said hey. They said hey.<br>
+      <em>And that was the end of it.</em>
+    </p>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="overline">How it works</p>
+      <h2>Match online. Meet in person.</h2>
+      <p>Blushh keeps your match a secret until the moment you're actually standing near each other.</p>
+    </div>
+
+    <div class="steps">
+
+      <!-- Step 1 -->
+      <div class="step reveal">
+        <div class="step-copy">
+          <div class="step-num">1</div>
+          <h3>Match with students at your school</h3>
+          <p>Every profile belongs to a verified student on your campus. Swipe through real
+             classmates &mdash; not an endless pile of strangers three cities away.</p>
+          <p>When you match, we don't tell you who it is. Not yet.</p>
+        </div>
+        <div class="step-phone">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="phone-screen">
+              <div class="mock-head">blushh</div>
+              <div class="mock-profile swipe-card">
+                <div class="mock-photo">
+                  <div class="mock-name">Maya <span>20</span></div>
+                </div>
+                <div class="mock-pills">
+                  <span class="mock-pill">Junior</span>
+                  <span class="mock-pill">Neuroscience</span>
+                  <span class="mock-pill">Coffee crawls</span>
+                </div>
+              </div>
+              <div class="mock-actions">
+                <div class="circ circ-pass"><svg class="icon"><use href="#i-close"/></svg></div>
+                <div class="circ circ-like"><svg class="icon"><use href="#i-heart"/></svg></div>
+              </div>
+              <div class="mock-match">
+                <svg class="icon"><use href="#i-eye"/></svg>
+                <p class="overline">A match is brewing</p>
+                <h4>Someone out there liked you back</h4>
+                <p>We won't say who &mdash; so keep your location on to find out.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step reveal">
+        <div class="step-copy">
+          <div class="step-num">2</div>
+          <h3>Go about your day</h3>
+          <p>Class, the dining hall, a party on a Friday night. Blushh quietly watches for the
+             one thing that matters: the two of you ending up in the same place.</p>
+          <p>Your exact location is never shared with another user.</p>
+        </div>
+        <div class="step-phone">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="phone-screen">
+              <div class="mock-map">
+                <div class="map-grid"></div>
+                <div class="map-block" style="left:8%;top:12%;width:26%;height:16%"></div>
+                <div class="map-block" style="left:62%;top:20%;width:30%;height:22%"></div>
+                <div class="map-block" style="left:14%;top:62%;width:32%;height:20%"></div>
+                <div class="map-block" style="left:60%;top:68%;width:26%;height:14%"></div>
+                <div class="map-meet"></div>
+                <div class="dot dot-a"></div>
+                <div class="dot dot-b"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step reveal">
+        <div class="step-copy">
+          <div class="step-num">3</div>
+          <h3>Both phones ring</h3>
+          <p>The second you're near each other, Blushh rings you both &mdash; an alarm you feel
+             through your pocket. They're here. Right now.</p>
+          <p>You both choose whether to unwrap. Only if you <em>both</em> say yes do you find
+             out who it is.</p>
+          <p><a href="#ring">See the ring in action &darr;</a></p>
+        </div>
+        <div class="step-phone">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="phone-screen" style="background:var(--backdrop)">
+              <div class="rp on" style="transition:none">
+                <div class="pulse-wrap">
+                  <div class="pulse"></div><div class="pulse"></div><div class="pulse"></div>
+                  <div class="pulse-core"><i></i></div>
+                </div>
+                <h4>Crush found</h4>
+                <p class="sub">Someone you matched with is right nearby. Are you ready?</p>
+                <div class="rp-cta">
+                  <button class="btn-primary" type="button" tabindex="-1" aria-hidden="true">I'm ready</button>
+                  <button class="btn-ghost" type="button" tabindex="-1" aria-hidden="true">Not now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE RING ============ -->
+<section class="ring-section" id="ring">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="overline">The ring</p>
+      <h2>This is what makes blushh different</h2>
+      <p>We ring you when a match is right nearby, in real life. Here's exactly what happens on
+         both phones.</p>
+    </div>
+
+    <div class="ring-stage reveal">
+      <!-- Phone A -->
+      <div class="phone" id="phone-a">
+        <div class="notch"></div>
+        <div class="phone-screen">
+          <div class="push-banner" data-push>
+            <div class="push-icon"><svg class="icon"><use href="#i-bell"/></svg></div>
+            <div>
+              <div class="push-title">Your crush is near
+                <svg class="icon"><use href="#i-heart-solid"/></svg>
+              </div>
+              <div class="push-body">Someone you matched with is right around the corner &mdash; open blushh.</div>
+            </div>
+          </div>
+
+          <div class="rp rp-lock" data-stage="idle push">
+            <div class="lock-time">11:42</div>
+            <div class="lock-date">Friday, October 2</div>
+          </div>
+
+          <div class="rp" data-stage="ringing">
+            <div class="pulse-wrap">
+              <div class="pulse"></div><div class="pulse"></div><div class="pulse"></div>
+              <div class="pulse-core"><i></i></div>
+            </div>
+            <h4>Crush found</h4>
+            <p class="sub">Someone you matched with is right nearby. Are you ready?</p>
+            <div class="rp-cta">
+              <button class="btn-primary" type="button" tabindex="-1" aria-hidden="true" data-tap-a>I'm ready</button>
+              <button class="btn-ghost" type="button" tabindex="-1" aria-hidden="true">Not now</button>
+            </div>
+          </div>
+
+          <div class="rp" data-stage="unwrap">
+            <svg class="icon gift"><use href="#i-gift"/></svg>
+            <h4>They're here</h4>
+            <p class="sub">Unwrap to reveal each other &mdash; but only if you both do.</p>
+            <div class="rp-cta">
+              <button class="btn-primary" type="button" tabindex="-1" aria-hidden="true">Tap to unwrap</button>
+              <button class="btn-ghost" type="button" tabindex="-1" aria-hidden="true">Not now</button>
+            </div>
+          </div>
+
+          <div class="rp" data-stage="waiting">
+            <div class="spinner"></div>
+            <h4>Waiting for them&hellip;</h4>
+            <p class="sub">You've unwrapped. The reveal happens the moment they do too.</p>
+          </div>
+
+          <div class="rp" data-stage="reveal">
+            <div class="confetti" data-confetti></div>
+            <div class="avatar"></div>
+            <p class="overline" style="margin-top:18px">It's them</p>
+            <div class="reveal-name">Maya <span>20</span></div>
+            <div class="mock-pills" style="justify-content:center">
+              <span class="mock-pill">Neuroscience</span>
+              <span class="mock-pill">Coffee crawls</span>
+            </div>
+            <div class="rp-cta">
+              <button class="btn-primary" type="button" tabindex="-1" aria-hidden="true">Say hi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone B -->
+      <div class="phone" id="phone-b">
+        <div class="notch"></div>
+        <div class="phone-screen">
+          <div class="push-banner" data-push>
+            <div class="push-icon"><svg class="icon"><use href="#i-bell"/></svg></div>
+            <div>
+              <div class="push-title">Your crush is near
+                <svg class="icon"><use href="#i-heart-solid"/></svg>
+              </div>
+              <div class="push-body">Someone you matched with is right around the corner &mdash; open blushh.</div>
+            </div>
+          </div>
+
+          <div class="rp rp-lock" data-stage="idle push">
+            <div class="lock-time">11:42</div>
+            <div class="lock-date">Friday, October 2</div>
+          </div>
+
+          <div class="rp" data-stage="ringing">
+            <div class="pulse-wrap">
+              <div class="pulse"></div><div class="pulse"></div><div class="pulse"></div>
+              <div class="pulse-core"><i></i></div>
+            </div>
+            <h4>Crush found</h4>
+            <p class="sub">Someone you matched with is right nearby. Are you ready?</p>
+            <div class="rp-cta">
+              <button class="btn-primary" type="button" tabindex="-1" aria-hidden="true">I'm ready</button>
+              <button class="btn-ghost" type="button" tabindex="-1" aria-hidden="true">Not now</button>
+            </div>
+          </div>
+
+          <!-- B lingers on unwrap while A waits -->
+          <div class="rp" data-stage="unwrap waiting">
+            <svg class="icon gift"><use href="#i-gift"/></svg>
+            <h4>They're here</h4>
+            <p class="sub">Unwrap to reveal each other &mdash; but only if you both do.</p>
+            <div class="rp-cta">
+              <button class="btn-primary" type="button" tabindex="-1" aria-hidden="true" data-tap-b>Tap to unwrap</button>
+              <button class="btn-ghost" type="button" tabindex="-1" aria-hidden="true">Not now</button>
+            </div>
+          </div>
+
+          <div class="rp" data-stage="reveal">
+            <div class="confetti" data-confetti></div>
+            <div class="avatar"></div>
+            <p class="overline" style="margin-top:18px">It's them</p>
+            <div class="reveal-name">Jordan <span>21</span></div>
+            <div class="mock-pills" style="justify-content:center">
+              <span class="mock-pill">Economics</span>
+              <span class="mock-pill">Live music</span>
+            </div>
+            <div class="rp-cta">
+              <button class="btn-primary" type="button" tabindex="-1" aria-hidden="true">Say hi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ring-caption">
+      <p data-caption aria-live="polite">A quiet Friday night on campus.</p>
+      <button class="replay" type="button" data-replay>
+        <svg class="icon"><use href="#i-replay"/></svg> Replay the ring
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVACY ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="overline">Built to be safe</p>
+      <h2>Nobody gets your location. Ever.</h2>
+      <p>The ring works without a single person ever seeing where you are.</p>
+    </div>
+
+    <div class="trust-grid reveal">
+      <div class="trust-card">
+        <svg class="icon"><use href="#i-shield"/></svg>
+        <h3>Your location stays yours</h3>
+        <p>Your exact location is never shared with another user. No map, no pin, no distance
+           readout &mdash; we only check whether a match is within a few meters.</p>
+      </div>
+      <div class="trust-card">
+        <svg class="icon"><use href="#i-ghost"/></svg>
+        <h3>Ghost mode, instantly</h3>
+        <p>One switch pauses the ring and hides you from discovery. Location and Bluetooth each
+           have their own toggle too. Turn it on whenever you want to disappear.</p>
+      </div>
+      <div class="trust-card">
+        <svg class="icon"><use href="#i-bolt"/></svg>
+        <h3>No trackers, no selling</h3>
+        <p>No third-party advertising or analytics trackers, and we never sell your personal
+           information. Delete your account any time &mdash; deletion is permanent and immediate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VERIFIED ============ -->
+<section class="pull">
+  <div class="wrap narrow">
+    <div class="section-head reveal" style="margin-bottom:28px">
+      <p class="overline">Students only</p>
+      <h2>Everyone here actually goes to your school</h2>
+      <p>Verify once with your school sign-in or your <code>.edu</code> email, and you're in.
+         You only ever see and match with students from your own campus.</p>
+    </div>
+    <div class="verified-row reveal">
+      <div class="v-badge">V</div>
+      <p style="color:var(--muted);max-width:360px;text-align:left">
+        Verified students carry the badge. It confirms they're enrolled where they say they are
+        &mdash; it isn't a background check, so always use good judgment when you meet someone.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WAITLIST ============ -->
+<section class="cta-section">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:32px">
+      <h2 style="color:var(--deep-rose)">Be there on day one</h2>
+      <p style="color:var(--deep-rose);opacity:.85">
+        We're launching campus by campus. Tell us where you go and we'll text you the day
+        blushh opens at your school.
+      </p>
+    </div>
+    <div class="form-card reveal">
+      <div data-form-root></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="foot-brand">blushh</span>
+    <a href="privacy/">Privacy Policy</a>
+    <a href="terms/">Terms of Service</a>
+    <a href="mailto:support@getblushh.com">support@getblushh.com</a>
+    <span>For college students 18+.</span>
+  </div>
+</footer>
+
+<template id="waitlist-template">
+  <form data-form novalidate>
+    <div class="field">
+      <label for="wl-school-FORMID">Your school</label>
+      <select id="wl-school-FORMID" name="school" required>
+        <option value="">Choose your school</option>
+      </select>
+    </div>
+    <div class="field" data-other-field hidden>
+      <label for="wl-other-FORMID">Which school?</label>
+      <input id="wl-other-FORMID" name="other_school" type="text" maxlength="80"
+             autocomplete="organization" placeholder="Type your school's name">
+    </div>
+    <div class="field">
+      <label for="wl-phone-FORMID">Mobile number</label>
+      <input id="wl-phone-FORMID" name="phone" type="tel" inputmode="tel"
+             autocomplete="tel" required placeholder="(615) 555-0147">
+    </div>
+    <label class="check">
+      <input type="checkbox" name="sms_consent" required>
+      <span data-consent-text>I agree to receive a text message from Blushh when Blushh launches
+        at my school. Message frequency varies (expect 1-3 messages). Message and data rates may
+        apply. Consent is not a condition of any purchase. Reply STOP to opt out or HELP for help.
+        See our <a href="privacy/">Privacy Policy</a>.</span>
+    </label>
+    <label class="check">
+      <input type="checkbox" name="age_attested" required>
+      <span>I'm 18 or older and a college student.</span>
+    </label>
+    <button class="submit" type="submit">Join the waitlist</button>
+    <p class="form-status" data-status role="status" aria-live="polite"></p>
+  </form>
+</template>
+
+<script>
+(function () {
+  'use strict';
+
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ========== Scroll reveals ========== */
+  var revealables = document.querySelectorAll('.reveal');
+  if (REDUCED || !('IntersectionObserver' in window)) {
+    revealables.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    revealables.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ========== The ring sequence ========== */
+  var stage = document.querySelector('.ring-stage');
+  var captionEl = document.querySelector('[data-caption]');
+  var replayBtn = document.querySelector('[data-replay]');
+  var phoneA = document.getElementById('phone-a');
+  var phoneB = document.getElementById('phone-b');
+
+  // Mirrors the real flow: ring.tsx -> unwrap.tsx -> reveal.tsx
+  var TIMELINE = [
+    { stage: 'idle',    ms: 1600, caption: 'A quiet Friday night on campus.' },
+    { stage: 'push',    ms: 2600, caption: 'You walk into the same room. Both phones go off at once.' },
+    { stage: 'ringing', ms: 3400, caption: 'The ring takes over the screen — and keeps buzzing until you answer.' },
+    { stage: 'unwrap',  ms: 2400, caption: 'Say you’re ready, and you get a gift to unwrap.' },
+    { stage: 'waiting', ms: 2200, caption: 'You unwrapped. Nothing is revealed until they do too.' },
+    { stage: 'reveal',  ms: 4200, caption: 'Both of you said yes. Now you know who it is — and they’re standing right there.' }
+  ];
+
+  var timer = null, step = 0, started = false;
+
+  function paint(name) {
+    stage.querySelectorAll('.rp').forEach(function (p) {
+      var list = (p.getAttribute('data-stage') || '').split(' ');
+      p.classList.toggle('on', list.indexOf(name) !== -1);
+    });
+    var pushOn = (name === 'push');
+    stage.querySelectorAll('[data-push]').forEach(function (b) { b.classList.toggle('on', pushOn); });
+
+    if (name === 'push' && !REDUCED) {
+      buzz(phoneA, 0);
+      buzz(phoneB, 180);
+    }
+    if (name === 'reveal' && !REDUCED) {
+      stage.querySelectorAll('[data-confetti]').forEach(makeConfetti);
+    }
+    if (name === 'unwrap' && !REDUCED) tap('[data-tap-a]', 120);
+    if (name === 'reveal' && !REDUCED) tap('[data-tap-b]', 0);
+  }
+
+  function tap(sel, delay) {
+    var el = stage.querySelector(sel);
+    if (!el) return;
+    setTimeout(function () {
+      el.classList.add('tap-ring');
+      setTimeout(function () { el.classList.remove('tap-ring'); }, 520);
+    }, delay);
+  }
+
+  function buzz(phone, delay) {
+    if (!phone) return;
+    setTimeout(function () {
+      phone.classList.remove('buzz');
+      void phone.offsetWidth;            // restart the animation
+      phone.classList.add('buzz');
+      setTimeout(function () { phone.classList.remove('buzz'); }, 1850);
+    }, delay);
+  }
+
+  var CONF_COLORS = ['#C93B61', '#B23057', '#148060'];
+  function makeConfetti(host) {
+    host.innerHTML = '';
+    for (var i = 0; i < 14; i++) {                 // Confetti.tsx: 14 pieces
+      var c = document.createElement('i');
+      c.className = 'conf';
+      c.style.left = (5 + Math.random() * 90) + '%';
+      c.style.background = CONF_COLORS[i % CONF_COLORS.length];
+      c.style.animationDelay = (i * 40) + 'ms';    // 40ms stagger
+      host.appendChild(c);
+    }
+  }
+
+  function advance() {
+    var frame = TIMELINE[step];
+    paint(frame.stage);
+    if (captionEl) captionEl.textContent = frame.caption;
+    timer = setTimeout(function () {
+      step = (step + 1) % TIMELINE.length;
+      advance();
+    }, frame.ms);
+  }
+
+  function play() {
+    clearTimeout(timer);
+    step = 0;
+    advance();
+  }
+
+  function showFinalFrame() {
+    paint('reveal');
+    if (captionEl) {
+      captionEl.textContent =
+        'Both of you said yes. Now you know who it is — and they’re standing right there.';
+    }
+  }
+
+  if (stage) {
+    if (REDUCED) {
+      showFinalFrame();
+      if (replayBtn) replayBtn.hidden = true;
+    } else {
+      if ('IntersectionObserver' in window) {
+        var ringIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting && !started) { started = true; play(); }
+            else if (!e.isIntersecting && started) { clearTimeout(timer); started = false; }
+          });
+        }, { threshold: 0.25 });
+        ringIo.observe(stage);
+      } else {
+        play();
+      }
+      if (replayBtn) replayBtn.addEventListener('click', function () { started = true; play(); });
+    }
+  }
+
+  /* ========== Waitlist ==========
+     Talks to Supabase through the join_waitlist RPC. The anon key is public by
+     design (it already ships in the mobile app); it grants EXECUTE on that one
+     function plus SELECT on the two public lookup tables, and no access at all
+     to the signups table. */
+  var SUPABASE_URL = 'https://knlxbzlwlhkfzszcxitp.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtubHhiemx3bGhrZnpzemN4aXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NzMyODcsImV4cCI6MjA5NTI0OTI4N30.4CpG-EzG6WGrWC8ARxtX6quoOipRiwBT4_E6iq8777U';
+  var REST = SUPABASE_URL + '/rest/v1';
+  var HEADERS = {
+    apikey: SUPABASE_ANON_KEY,
+    Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+    'Content-Type': 'application/json'
+  };
+
+  // Fallback list if the lookup table isn't reachable yet (migration not applied).
+  var FALLBACK_SCHOOLS = [
+    { slug: 'vanderbilt', display_name: 'Vanderbilt University' },
+    { slug: 'other', display_name: "My school isn't listed" }
+  ];
+
+  var formId = 0;
+  var forms = [];
+
+  document.querySelectorAll('[data-form-root]').forEach(function (root) {
+    var tpl = document.getElementById('waitlist-template');
+    var id = 'f' + (++formId);
+    var html = tpl.innerHTML.replace(/FORMID/g, id);
+    root.innerHTML = html;
+    forms.push(root.querySelector('[data-form]'));
+  });
+
+  function fillSchools(list) {
+    forms.forEach(function (form) {
+      var sel = form.querySelector('select[name=school]');
+      if (!sel) return;
+      list.forEach(function (s) {
+        var o = document.createElement('option');
+        o.value = s.slug;
+        o.textContent = s.display_name;
+        sel.appendChild(o);
+      });
+    });
+  }
+
+  fetch(REST + '/waitlist_schools?select=slug,display_name&listed=eq.true' +
+        '&order=sort_order.asc,display_name.asc', { headers: HEADERS })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+    .then(function (rows) { fillSchools(rows && rows.length ? rows : FALLBACK_SCHOOLS); })
+    .catch(function () { fillSchools(FALLBACK_SCHOOLS); });
+
+  // Render the consent text from the database so the displayed wording and the
+  // stored version can never drift apart.
+  fetch(REST + '/waitlist_consent_versions?select=version,disclosure_text' +
+        '&retired_at=is.null&order=effective_from.desc&limit=1', { headers: HEADERS })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+    .then(function (rows) {
+      if (!rows || !rows.length) return;
+      var row = rows[0];
+      forms.forEach(function (form) {
+        form.dataset.consentVersion = row.version;
+        var span = form.querySelector('[data-consent-text]');
+        if (span) {
+          span.textContent = row.disclosure_text;
+          var a = document.createElement('a');
+          a.href = 'privacy/';
+          a.textContent = ' Privacy Policy';
+          span.appendChild(a);
+        }
+      });
+    })
+    .catch(function () { /* keep the hardcoded copy of v1 */ });
+
+  forms.forEach(function (form) {
+    if (!form) return;
+    var sel = form.querySelector('select[name=school]');
+    var otherField = form.querySelector('[data-other-field]');
+    var otherInput = form.querySelector('input[name=other_school]');
+    var statusEl = form.querySelector('[data-status]');
+    var submitBtn = form.querySelector('button[type=submit]');
+
+    if (sel && otherField) {
+      sel.addEventListener('change', function () {
+        var isOther = sel.value === 'other';
+        otherField.hidden = !isOther;
+        if (otherInput) otherInput.required = isOther;
+      });
+    }
+
+    function say(msg, kind) {
+      if (!statusEl) return;
+      statusEl.textContent = msg || '';
+      statusEl.className = 'form-status' + (kind ? ' ' + kind : '');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      say('');
+
+      var phone = (form.phone.value || '').trim();
+      var school = sel ? sel.value : '';
+      var consent = form.sms_consent.checked;
+      var age = form.age_attested.checked;
+      var other = otherInput ? (otherInput.value || '').trim() : '';
+
+      if (!school) { say('Pick your school first.', 'err'); return; }
+      if (school === 'other' && other.length < 2) { say('Tell us which school you go to.', 'err'); return; }
+      if (phone.replace(/\D/g, '').length < 10) { say('Enter a valid mobile number.', 'err'); return; }
+      if (!consent) { say('Please agree to receive the launch text.', 'err'); return; }
+      if (!age) { say('Blushh is for college students 18 and older.', 'err'); return; }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Joining…';
+
+      fetch(REST + '/rpc/join_waitlist', {
+        method: 'POST',
+        headers: HEADERS,
+        body: JSON.stringify({
+          p_phone: phone,
+          p_school_slug: school,
+          p_sms_consent: consent,
+          p_age_attested: age,
+          p_consent_version: form.dataset.consentVersion || 'v1',
+          p_email: null,
+          p_other_school: school === 'other' ? other : null
+        })
+      }).then(function (res) {
+        if (res.ok) {
+          // Same confirmation whether the number was new or already on the list:
+          // distinguishing them would turn this endpoint into a way to test
+          // whether a specific number is on the waitlist.
+          form.innerHTML =
+            '<div class="form-done">' +
+            '<svg class="icon"><use href="#i-check-circle"/></svg>' +
+            '<h3>You’re on the list</h3>' +
+            '<p>We’ll text you the day blushh opens at your school.</p>' +
+            '</div>';
+          return;
+        }
+        return res.json().then(function (body) {
+          var msg = (body && body.message) || '';
+          var i = msg.indexOf(':');
+          say(i > 0 ? msg.slice(i + 1).trim() : 'Something went wrong — please try again.', 'err');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Join the waitlist';
+        }).catch(function () {
+          say('Something went wrong — please try again.', 'err');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Join the waitlist';
+        });
+      }).catch(function () {
+        say('Couldn’t reach the server. Check your connection and try again.', 'err');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join the waitlist';
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>
